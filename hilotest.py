@@ -1,11 +1,12 @@
+#This is a simple HIGH LOW test file, not part of the project, just a sanity check file
+
+
 import RPi.GPIO as GPIO
 import time
 
 lightningPin = 18 #GPIO18
 GPIO.setmode(GPIO.BCM)
 GPIO.setup(lightningPin, GPIO.OUT)
-
-
 
 time.sleep(2)
 GPIO.output(lightningPin, 1)

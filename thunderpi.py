@@ -9,8 +9,15 @@ lightningPin = 18 #GPIO18
 GPIO.setmode(GPIO.BCM)
 GPIO.setup(lightningPin, GPIO.OUT)
 
-#Logging and globals
+#Logging and globals - Set this to False for production release
 verboseLogging = True
+
+############################
+# Should the program loop!??
+shouldLoop = True
+############################
+
+
 duration = 0
 vlcPlayer = vlc.MediaPlayer("Sound.mp3")
 
@@ -106,10 +113,22 @@ def mainLoop():
         
         #Because python is lame, we should delay here for a bit as to not trip the maximum recursion ammount
         time.sleep(1)
+
         #Call the main loop so we keep going
         mainLoop();
     else:
-        print("That's all she wrote!")
+        if(shouldLoop):
+            #Set the duration to zero as we are looping
+            global duration
+            duration = 0
+
+            #Start the music again
+            startMusic()
+
+            #Continue looping
+            mainLoop();
+        else:
+            print("That's all, Folks!")
 
 #######################
 # Program Starts Here #
