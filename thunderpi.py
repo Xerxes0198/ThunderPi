@@ -118,6 +118,10 @@ def mainLoop():
         mainLoop();
     else:
         if(shouldLoop):
+            #Add a delay here in case we reach the upper recursion ammount
+            time.sleep(1)
+
+
             #Set the duration to zero as we are looping
             global duration
             duration = 0
